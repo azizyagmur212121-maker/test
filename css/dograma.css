@@ -1,0 +1,1095 @@
+/* =========================================
+   ALÜMİNYUM HERO BÖLÜMÜ (YENİ VE KUSURSUZ)
+========================================= */
+
+.alu-hero-section {
+    position: relative;
+    padding: 130px 0 60px 0;
+    /* Üstten ve alttan boşlukları azalttık, alttaki ikonlar görünür! */
+    background-color: #fafbfc;
+    min-height: auto;
+    /* 100vh iptal edildi, sayfa içeriğe göre oturacak */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Arka Plandaki Milimetrik Çizgiler */
+.alu-bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+}
+
+/* Sola Yapışmayı Çözen ÖZEL Container */
+.alu-custom-container {
+    width: 100%;
+    max-width: 1300px;
+    /* Geniş, panoramik bir alan */
+    margin: 0 auto;
+    padding: 0 40px;
+    /* Kenarlardan çok net bir boşluk (Sola yapışmayı engeller) */
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Sol Taraf Yazılar */
+.alu-hero-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.breadcrumb {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+.breadcrumb a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: #d69a36;
+}
+
+.breadcrumb .current {
+    color: #d69a36;
+}
+
+.breadcrumb .separator {
+    margin: 0 8px;
+}
+
+.subpage-title {
+    font-size: 3.2rem;
+    /* Hafif küçültüldü ki alta baskı yapmasın */
+    font-weight: 800;
+    color: #1a1f24;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.subpage-desc {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 95%;
+}
+
+/* 3'lü Mini Özellikler */
+.tech-specs-mini {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.spec-item-mini {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.spec-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.spec-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-val {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1f24;
+}
+
+.spec-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+/* Sağ Taraf - 3D Blueprint Çizim Kartı */
+.alu-hero-visual {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.blueprint-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 30px;
+    /* İç boşluk azaltıldı (kartı küçültür) */
+    width: 100%;
+    max-width: 600px;
+    /* Geniş ama çok yüksek değil */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    /* DİKKAT: ÇOK UZUN VE YUMUŞAK (SMOOTH) 3D ANİMASYON GEÇİŞİ */
+    transition: transform 2.5s cubic-bezier(0.2, 0.9, 0.3, 1.1), box-shadow 2.5s ease;
+    transform-style: preserve-3d;
+}
+
+.bp-grid-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    z-index: 1;
+}
+
+.bp-dimensions {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+
+.bp-dimensions span {
+    background: #fff;
+    padding: 0 10px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: #888;
+}
+
+.alu-svg {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+/* YENİ 3D EFEKTİ - Daha derin ve yumuşak */
+.blueprint-card.is-3d {
+    transform: perspective(1500px) rotateY(-15deg) rotateX(4deg) scale(1.03);
+    box-shadow: -25px 35px 70px rgba(0, 0, 0, 0.15);
+    border-color: #d69a36;
+}
+
+/* =========================================
+   RESPONSIVE (MOBİL) DÜZENİ
+========================================= */
+@media (max-width: 992px) {
+    .alu-hero-section {
+        padding: 120px 0 60px 0;
+    }
+
+    .alu-custom-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 25px;
+        /* Mobilde de kenarlardan boşluk var */
+    }
+
+    /* Çizimi Mobilde En Üste Alır! */
+    .alu-hero-visual {
+        order: -1;
+        justify-content: center;
+    }
+
+    .subpage-title {
+        font-size: 2.3rem;
+    }
+
+    .tech-specs-mini {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+.blueprint-card {
+    /* Eski özellikleri aynı kalıyor (background, border, max-width vb.) */
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transform-style: preserve-3d;
+
+    /* YENİ GEÇİŞ: 3 Saniyelik, İpek gibi süzülen bir kavis (bounce iptal) */
+    transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 3s ease, border-color 3s ease;
+}
+
+.blueprint-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transform-style: preserve-3d;
+
+    /* 3.5 Saniyelik Ultra Yumuşak Geçiş */
+    transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 3.5s ease, border-color 3.5s ease;
+}
+
+/* YENİ AÇI: Daha yatık ve belirgin */
+.blueprint-card.is-3d {
+    transform: perspective(1400px) rotateY(-22deg) rotateX(8deg) scale(1.05);
+    box-shadow: -35px 45px 80px rgba(0, 0, 0, 0.18);
+    border-color: #d69a36;
+}
+
+/* =========================================
+   2. BÖLÜM: ÖZELLİKLER (NEDEN ALÜMİNYUM?)
+========================================= */
+
+.alu-features {
+    padding: 100px 0;
+    background-color: #fbfcfd;
+    /* Gridin görünmesi için kırık beyaz */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Arkadaki Milimetrik Grid */
+.alu-features .alu-bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+}
+
+.alu-features .relative-z {
+    position: relative;
+    z-index: 2;
+}
+
+.alu-features .section-desc {
+    margin-top: 15px;
+    margin-bottom: 50px;
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.alu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* KART TASARIMI */
+.alu-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    /* Çok hafif gölge */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Sadece Üstteki Metalik Şerit (Hover'da Çıkar) */
+.alu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #2c3035, #d69a36);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 2;
+}
+
+/* İSTENİLEN HAFİF HOVER EFEKTİ */
+.alu-card:hover {
+    transform: translateY(-5px);
+    /* Sadece 5px hafifçe kalkar */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+    /* Gölge çok az derinleşir */
+}
+
+.alu-card:hover::before {
+    transform: scaleX(1);
+    /* Üstteki çizgi akar */
+}
+
+/* İkonlar artık sabit (hover'da değişmez) */
+.alu-card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(214, 154, 54, 0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.alu-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a1f24;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.alu-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Responsive Kuralları */
+@media (max-width: 1200px) {
+    .alu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .alu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .alu-card {
+        padding: 30px 25px;
+    }
+}
+
+/* =========================================
+   4. BÖLÜM: ALÜMİNYUM VS PVC
+========================================= */
+
+.alu-compare-section {
+    padding: 100px 0;
+    background-color: #ffffff;
+    /* Temiz zemin */
+}
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* Sol Taraf (İnteraktif Slider Container) */
+.compare-visual-box {
+    position: relative;
+    width: 100%;
+}
+
+.alu-slider-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #eef2f5;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Etkileşimi inputa bırakır */
+}
+
+/* Kilit Nokta: PVC Altta, Alüminyum Üstte (Clip-Path ile kesilir) */
+.slider-pvc {
+    background-color: #f4f6f8;
+}
+
+.slider-alu {
+    background-color: #fafbfc;
+    /* Değişken (W) oranında kendini keser */
+    clip-path: polygon(0 0, var(--position) 0, var(--position) 100%, 0 100%);
+}
+
+/* Üstteki Ufak Etiketler */
+.slider-label {
+    position: absolute;
+    top: 20px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 5;
+}
+
+.label-pvc {
+    right: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    color: #555;
+}
+
+.label-alu {
+    left: 20px;
+    background: #1a1f24;
+    color: #d69a36;
+}
+
+/* Görünmez Range Input (Tüm işi bu yapar) */
+.alu-slider-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+    /* Sağ-sol oku */
+    z-index: 10;
+}
+
+/* Çizgi ve Tutamaç */
+.alu-slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--position);
+    width: 4px;
+    background: #d69a36;
+    transform: translateX(-50%);
+    pointer-events: none;
+    /* Inputun tıklanmasını engellemesin */
+    z-index: 5;
+}
+
+.handle-arrows {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: #d69a36;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.handle-arrows svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Sağ Taraf (SEO ve Kıyaslama Listesi) */
+.vs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.vs-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.vs-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(214, 154, 54, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.vs-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.vs-text h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1f24;
+    margin-bottom: 8px;
+}
+
+.vs-text p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.vs-text strong {
+    color: #1a1f24;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .compare-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .alu-slider-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* =========================================
+   5. BÖLÜM: SIKÇA SORULAN SORULAR (FAQ)
+========================================= */
+
+.alu-faq-section {
+    padding: 100px 0;
+    background-color: #fafbfc;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    /* Başlık solda, sorular sağda */
+    gap: 60px;
+    align-items: start;
+}
+
+.faq-header .section-desc {
+    margin-top: 15px;
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.faq-accordion-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.alu-accordion-item {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.alu-accordion-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+.alu-accordion-btn {
+    width: 100%;
+    text-align: left;
+    padding: 22px 25px;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1f24;
+    transition: color 0.3s ease;
+}
+
+.alu-accordion-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.alu-accordion-item.active .alu-accordion-btn {
+    color: #d69a36;
+}
+
+.alu-accordion-item.active .alu-accordion-btn svg {
+    transform: rotate(180deg);
+}
+
+.alu-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.alu-accordion-content p {
+    padding: 0 25px 25px 25px;
+    margin: 0;
+    color: #666;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.alu-accordion-content p strong {
+    color: #1a1f24;
+}
+
+/* =========================================
+   6. BÖLÜM: LOKAL SEO CTA (KAPANIŞ)
+========================================= */
+
+.alu-cta-section {
+    padding: 0 0 100px 0;
+    background-color: #fafbfc;
+}
+
+.cta-inner-box {
+    background: linear-gradient(135deg, #111215 0%, #1c1e22 100%);
+    border-radius: 24px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.cta-badge {
+    display: inline-block;
+    background: rgba(214, 154, 54, 0.15);
+    color: #d69a36;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.cta-title {
+    color: #ffffff;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.cta-desc {
+    color: #a0a5aa;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+/* Radar & Harita Görseli */
+.cta-map-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radar-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.abstract-coastline {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.radar-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #d69a36;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.radar-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: rgba(214, 154, 54, 0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    animation: ctaRadarAnim 3s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+}
+
+.radar-pulse.delay-1 {
+    animation-delay: 1.5s;
+}
+
+@keyframes ctaRadarAnim {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+.radar-location-tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(20px, -20px);
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .cta-inner-box {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+        text-align: center;
+    }
+
+    .cta-map-visual {
+        order: -1;
+        margin-bottom: 20px;
+    }
+
+    /* Mobilde harita üste çıkar */
+}
+
+/* =========================================
+   5. BÖLÜM: SÜRDÜRÜLEBİLİRLİK (ÇEVRE DOSTU)
+========================================= */
+
+.alu-eco-section {
+    padding: 100px 0;
+    background-color: #f4f8f5;
+    /* Çok hafif, ferah yeşilimtrak arka plan */
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(46, 139, 87, 0.1);
+}
+
+/* Hafif Çizgisel Arkaplan Dokusu */
+.eco-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(46, 139, 87, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 139, 87, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 1;
+}
+
+.alu-eco-section .relative-z {
+    position: relative;
+    z-index: 2;
+}
+
+.alu-eco-section .section-desc {
+    margin-top: 15px;
+    margin-bottom: 50px;
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.eco-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+/* Yeşil Tema Kart Tasarımı */
+.eco-card {
+    background: #ffffff;
+    border: 1px solid rgba(46, 139, 87, 0.1);
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Hover'da alttan ince yeşil şerit çıkar */
+.eco-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #2e8b57;
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.eco-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(46, 139, 87, 0.08);
+    border-color: rgba(46, 139, 87, 0.3);
+}
+
+.eco-card:hover::after {
+    transform: scaleX(1);
+}
+
+.eco-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(46, 139, 87, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+    transition: background 0.4s ease;
+}
+
+.eco-card:hover .eco-icon {
+    background: #2e8b57;
+}
+
+.eco-card:hover .eco-icon svg {
+    stroke: #ffffff;
+}
+
+.eco-icon svg {
+    width: 30px;
+    height: 30px;
+    transition: stroke 0.4s ease;
+}
+
+.eco-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a1f24;
+    margin-bottom: 15px;
+}
+
+.eco-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .eco-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .eco-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* =========================================
+   7. BÖLÜM: MODERN GALERİ (FLEX ACCORDION)
+========================================= */
+
+.alu-gallery-section {
+    padding: 100px 0;
+    background-color: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modern-gallery-wrapper {
+    display: flex;
+    gap: 15px;
+    height: 500px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.gallery-item {
+    position: relative;
+    flex: 1;
+    /* Pasif kartların genişliği */
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    /* Geçişlerin yağ gibi akması için */
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+    filter: grayscale(100%);
+    /* Pasifler siyah beyaz */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* KARTIN ÜZERİNE GELİNDİĞİNDE (AKTİF DURUM) */
+.gallery-item.active {
+    flex: 6;
+    /* Aktif kart devasa boyutlara ulaşır */
+    filter: grayscale(0%);
+    /* Renkler geri gelir */
+}
+
+.gallery-item.active img {
+    transform: scale(1.03);
+}
+
+/* İçerik Kararması (Gradient) */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.gallery-item.active::after {
+    opacity: 1;
+}
+
+/* Yazı İçerikleri */
+.gallery-content {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: 0.2s;
+    /* Genişleme bitmeye yakın metin çıkar */
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.gallery-item.active .gallery-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-content h3 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-content p {
+    color: #d69a36;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Responsive Düzenlemeler */
+@media (max-width: 992px) {
+    .modern-gallery-wrapper {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modern-gallery-wrapper {
+        flex-direction: column;
+        /* Mobilde alt alta dizilir */
+        height: 600px;
+    }
+
+    .gallery-item {
+        flex: 1;
+    }
+
+    .gallery-item.active {
+        flex: 3;
+    }
+
+    .gallery-content h3 {
+        font-size: 1.4rem;
+        white-space: normal;
+    }
+}

@@ -1,0 +1,183 @@
+/* =========================================
+   GİZLİLİK VE ÇEREZ POLİTİKASI SAYFASI 
+========================================= */
+* {
+    scroll-behavior: smooth;
+}
+
+.policy-page-wrapper {
+    background-color: #fafafa;
+    color: #333;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+}
+
+.policy-hero {
+    background-color: #1a1f24;
+    padding: 140px 20px 60px;
+    color: #fff;
+    border-bottom: 4px solid #d69a36;
+}
+
+.policy-hero .subpage-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.policy-hero .policy-date {
+    color: #a0a6b1;
+    font-size: 1rem;
+}
+
+.policy-main {
+    padding: 60px 0;
+}
+
+.policy-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* Sol Taraf: Sabit Navigasyon */
+.sidebar-sticky {
+    position: sticky;
+    top: 100px;
+    /* Scroll yaparken üstte kalma mesafesi */
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.sidebar-sticky h3 {
+    font-size: 1.1rem;
+    color: #1a1f24;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.policy-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.policy-nav .nav-header {
+    font-weight: 700;
+    color: #1a1f24;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.policy-nav li {
+    margin-bottom: 8px;
+}
+
+.policy-nav a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: block;
+    padding-left: 10px;
+    position: relative;
+}
+
+.policy-nav a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: #d69a36;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.policy-nav a:hover {
+    color: #d69a36;
+    padding-left: 15px;
+}
+
+.policy-nav a:hover::before {
+    opacity: 1;
+}
+
+/* Sağ Taraf: Metin İçeriği */
+.policy-content {
+    background: #fff;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.main-policy-heading {
+    font-size: 1.8rem;
+    color: #1a1f24;
+    margin-bottom: 20px;
+}
+
+.policy-block {
+    margin-top: 40px;
+    /* Linke tıklandığında menünün altında kalmaması için scroll payı */
+    scroll-margin-top: 120px;
+}
+
+.policy-block h3 {
+    font-size: 1.3rem;
+    color: #1a1f24;
+    margin-bottom: 15px;
+}
+
+.policy-block p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.policy-block ul {
+    color: #555;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.policy-block li {
+    margin-bottom: 10px;
+}
+
+.policy-divider {
+    border: 0;
+    height: 1px;
+    background: #eee;
+    margin: 60px 0;
+}
+
+/* Responsive Ayarlar */
+@media (max-width: 992px) {
+    .policy-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .sidebar-sticky {
+        position: static;
+        /* Mobilde sabit yapıyı iptal et */
+        padding: 20px;
+    }
+
+    .policy-content {
+        padding: 30px 20px;
+    }
+
+    .policy-hero {
+        padding-top: 120px;
+    }
+}

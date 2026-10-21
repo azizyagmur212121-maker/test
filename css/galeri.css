@@ -1,0 +1,338 @@
+/* =========================================
+   GALERİ & PROJELER SAYFASI STİLLERİ
+========================================= */
+
+/* --- HERO ALANI (ZORLA ORTALAMA EKLENDİ) --- */
+.gallery-hero-section {
+    padding-top: 160px;
+    padding-bottom: 60px;
+    background-color: #fff;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.gallery-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(rgba(214, 154, 54, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+}
+
+.gallery-hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.gallery-hero-center .breadcrumb {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.gallery-hero-center .subpage-title {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.gallery-hero-center .subpage-desc {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* --- FİLTRE BUTONLARI --- */
+.gallery-main-section {
+    padding: 60px 0 100px;
+    background-color: #fafafa;
+}
+
+.gallery-filter-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    border-color: #d69a36;
+    color: #d69a36;
+}
+
+.filter-btn.active {
+    background: #1a1f24;
+    color: #fff;
+    border-color: #1a1f24;
+    box-shadow: 0 4px 15px rgba(26, 31, 36, 0.2);
+}
+
+/* --- GRID (KART) YAPISI --- */
+.custom-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.gallery-grid-item {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, opacity 0.4s ease;
+    background: #fff;
+    position: relative;
+    /* Filtrelemede gizlenip açılması için */
+    display: block;
+}
+
+.gallery-grid-item:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 15px 35px rgba(214, 154, 54, 0.2);
+}
+
+/* --- RESİM ALANI VE OVERLAY EFEKTİ --- */
+.g-img-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.g-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-grid-item:hover .g-img-wrapper img {
+    transform: scale(1.08);
+}
+
+/* Premium Hover Karartması ve İkon */
+.g-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 31, 36, 0.5);
+    /* Yarı saydam siyah film */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.g-overlay svg {
+    width: 48px;
+    height: 48px;
+    color: #fff;
+    background: rgba(214, 154, 54, 0.95);
+    padding: 12px;
+    border-radius: 50%;
+    transform: translateY(20px) scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-grid-item:hover .g-overlay {
+    opacity: 1;
+}
+
+.gallery-grid-item:hover .g-overlay svg {
+    transform: translateY(0) scale(1);
+}
+
+@media (max-width: 768px) {
+    .gallery-hero-section {
+        padding-top: 130px;
+    }
+
+    .gallery-filter-wrapper {
+        gap: 10px;
+    }
+
+    .filter-btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+
+    .custom-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* =========================================
+   LIGHTBOX (TAM EKRAN GÖRSEL GÖRÜNTÜLEYİCİ)
+========================================= */
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 19, 23, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    user-select: none;
+}
+
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lb-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lb-img {
+    max-width: 90vw;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform: scale(0.92);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
+}
+
+.gallery-lightbox.active .lb-img {
+    transform: scale(1);
+}
+
+.lb-counter {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(214, 154, 54, 0.4);
+    letter-spacing: 1px;
+}
+
+.lb-btn {
+    position: absolute;
+    background: rgba(26, 31, 36, 0.8);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.lb-btn:hover {
+    background: #d69a36;
+    border-color: #d69a36;
+    transform: scale(1.08);
+}
+
+.lb-btn svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: currentColor;
+}
+
+.lb-close {
+    top: 25px;
+    right: 30px;
+}
+
+.lb-prev {
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lb-prev:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+.lb-next {
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lb-next:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+@media (max-width: 768px) {
+    .lb-img {
+        max-width: 95vw;
+        max-height: 75vh;
+    }
+
+    .lb-prev {
+        left: 12px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .lb-next {
+        right: 12px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .lb-close {
+        top: 15px;
+        right: 15px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .lb-counter {
+        top: 15px;
+        left: 15px;
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}

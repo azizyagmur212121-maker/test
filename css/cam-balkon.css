@@ -1,0 +1,1273 @@
+:root {
+    --clr-bg: #F8F9FA;
+    --clr-dark: #1A1F24;
+    --clr-accent: #D49A36;
+    --clr-glass: rgba(255, 255, 255, 0.4);
+    --nav-height: 110px;
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--clr-dark);
+    background-color: var(--clr-bg);
+    background-image: linear-gradient(rgba(26, 31, 36, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 31, 36, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    overflow-x: hidden;
+}
+
+
+
+/* CAM BALKON CSS BAŞLANGICI*/
+/* ========================================== */
+/* ALT SAYFALAR (CAM BALKON, PİMAPEN VB.)     */
+/* ========================================== */
+.subpage-hero {
+    padding: calc(var(--nav-height) + 4rem) 4vw 6rem 4vw;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--clr-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.subpage-hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(214, 154, 54, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.subpage-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 5rem;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.subpage-hero-content {
+    flex: 1.2;
+    max-width: 650px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+    color: rgba(26, 31, 36, 0.5);
+    text-decoration: none;
+    transition: color var(--transition-smooth);
+}
+
+.breadcrumb a:hover {
+    color: var(--clr-accent);
+}
+
+.breadcrumb .separator {
+    color: rgba(26, 31, 36, 0.3);
+}
+
+.breadcrumb .current {
+    color: var(--clr-accent);
+}
+
+/* Metinler ve Butonlar */
+.subpage-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--clr-dark);
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -1px;
+}
+
+.subpage-title span {
+    color: var(--clr-accent);
+}
+
+.subpage-desc {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(26, 31, 36, 0.7);
+    margin-bottom: 2.5rem;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--clr-dark);
+    border: 2px solid rgba(26, 31, 36, 0.1);
+}
+
+.btn-outline:hover {
+    border-color: var(--clr-dark);
+    background: rgba(26, 31, 36, 0.05);
+    transform: translateY(-2px);
+}
+
+/* İstatistikler */
+.tech-specs-mini {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(26, 31, 36, 0.08);
+}
+
+.spec-item-mini {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-val {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--clr-dark);
+}
+
+.spec-label {
+    font-size: 0.85rem;
+    color: rgba(26, 31, 36, 0.5);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+}
+
+/* 3D Görsel ve Blueprint */
+.subpage-hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+}
+
+.blueprint-animation-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.bp-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.bp-active {
+    opacity: 1;
+    z-index: 2;
+}
+
+#blueprint-line-drawing svg {
+    width: 100%;
+    height: auto;
+}
+
+/* SVG Çizim Başlangıç Ayarları (JS tarafından doldurulacak) */
+.subpage-svg path,
+.subpage-svg rect,
+.subpage-svg circle {
+    stroke-opacity: 0;
+    transition: stroke-opacity 0.2s ease;
+    fill: transparent;
+}
+
+.bp-glass-fill {
+    stroke: none;
+    transition: opacity 0.8s ease;
+}
+
+.bp-glass-fill-persp {
+    stroke: var(--clr-accent);
+    stroke-width: 0.5;
+    transition: opacity 0.8s ease;
+}
+
+/* 3D Görsel Transformları */
+.final-3d-rendering {
+    transform: perspective(1000px) rotateY(-15deg) scale(0.9);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+}
+
+.bp-active.final-3d-rendering {
+    transform: perspective(1000px) rotateY(0deg) scale(1);
+    opacity: 1;
+}
+
+.final-3d-rendering img {
+    max-width: 90%;
+    height: auto;
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 1024px) {
+    .subpage-hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .subpage-hero-content {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tech-specs-mini {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .subpage-title {
+        font-size: 2.3rem;
+    }
+
+    .tech-specs-mini {
+        gap: 1.5rem;
+    }
+
+    .spec-val {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    /* Görselin üstte, metnin altta kalmasını sağlayan takla (reverse) kodu */
+    .subpage-hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .subpage-hero-content {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tech-specs-mini {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .subpage-title {
+        font-size: 2.3rem;
+    }
+
+    .tech-specs-mini {
+        gap: 1.5rem;
+    }
+
+    .spec-val {
+        font-size: 1.4rem;
+    }
+
+    /* Mobilde görselin kapladığı alanı genişletip rahatlatıyoruz */
+    .subpage-hero-visual {
+        min-height: 320px;
+        width: 100%;
+        padding: 0 1rem;
+    }
+}
+
+/* --- PROBLEM & ÇÖZÜM BÖLÜMÜ (TEKNİK RENDER) --- */
+.problem-solution-section {
+    padding: 6rem 4vw;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.ps-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 5rem;
+}
+
+/* Görsel Alanı */
+.ps-visual {
+    flex: 1;
+    position: relative;
+    max-width: 550px;
+}
+
+.ps-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.ps-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ps-reveal-mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-dark);
+    z-index: 2;
+}
+
+/* UI/UX: Dinamik Teknik Etiketler (Hotspots) */
+.tech-hotspot {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Nabız atan nokta */
+.hotspot-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--clr-accent);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(214, 154, 54, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.hotspot-dot::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    border: 1px solid var(--clr-accent);
+    animation: pulseHotspot 2s infinite ease-out;
+}
+
+@keyframes pulseHotspot {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+.tech-hotspot:hover .hotspot-dot {
+    transform: scale(1.2);
+}
+
+/* Açılan Bilgi Kartı */
+.hotspot-card {
+    position: absolute;
+    left: 25px;
+    /* Noktanın sağında açılır */
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    width: max-content;
+    max-width: 220px;
+    background: rgba(11, 14, 17, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tech-hotspot:hover .hotspot-card {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.hotspot-card strong {
+    display: block;
+    color: var(--clr-accent);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+}
+
+.hotspot-card span {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* İçerik Alanı */
+.ps-content {
+    flex: 1;
+    max-width: 550px;
+}
+
+.ps-features {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.ps-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.05rem;
+    color: rgba(26, 31, 36, 0.7);
+    line-height: 1.5;
+}
+
+.ps-features li strong {
+    color: var(--clr-dark);
+}
+
+.ps-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(214, 154, 54, 0.1);
+    color: var(--clr-accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.ps-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+@media (max-width: 1024px) {
+    .ps-container {
+        flex-direction: column;
+        gap: 4rem;
+        text-align: center;
+    }
+
+    .ps-features li {
+        text-align: left;
+    }
+
+    .ps-visual {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    /* Mobilde etiketleri gizleyip görseli temiz bırakalım, çünkü hover mobilde zordur */
+    .tech-hotspot {
+        display: none;
+    }
+}
+
+/* Açılan Bilgi Kartı */
+.hotspot-card {
+    position: absolute;
+    left: 25px;
+    /* Varsayılan olarak sağa açılır */
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    width: max-content;
+    max-width: 220px;
+    background: rgba(11, 14, 17, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+/* Sola Doğru Açılma Mantığı (Sağ köşeye yakın olanlar için) */
+.tech-hotspot.open-left .hotspot-card {
+    left: auto;
+    right: 25px;
+    transform: translateY(-50%) translateX(-10px);
+}
+
+/* Hover (Masaüstü) veya Active (Mobil JS tetiklemesi) durumunda açılma */
+.tech-hotspot:hover .hotspot-card,
+.tech-hotspot.active .hotspot-card {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.hotspot-card strong {
+    display: block;
+    color: var(--clr-accent);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+}
+
+.hotspot-card span {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Mobilde etiketleri gizleyen kodu SİLDİK, boyutlarını telefona uygun yaptık */
+@media (max-width: 768px) {
+    .hotspot-card {
+        max-width: 150px;
+        padding: 0.8rem;
+    }
+
+    .hotspot-card strong {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        margin-bottom: 0.4rem;
+    }
+
+    .hotspot-card span {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    /* Mobilde noktayı biraz daha küçük tutalım ki görseli boğmasın */
+    .hotspot-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ps-container {
+        flex-direction: column;
+        gap: 4rem;
+        text-align: center;
+    }
+
+    .ps-features li {
+        text-align: left;
+    }
+
+    .ps-visual {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    /* ESKİ HALİ: .tech-hotspot { display: none; } */
+    /* YENİ HALİ (Bunu Yapıştır): */
+    .tech-hotspot {
+        display: flex;
+    }
+}
+
+/* --- 2. BÖLÜM: İNTERAKTİF ÖZELLEŞTİRME VE RENKLER --- */
+.customization-section {
+    padding: 6rem 4vw;
+    background: #fff;
+    /* Temiz, aydınlık bir zemin */
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid rgba(26, 31, 36, 0.05);
+}
+
+.custom-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.custom-showcase {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+/* Sol ve Sağ Kontrol Panelleri */
+.color-controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 2;
+}
+
+.profile-controls {
+    align-items: flex-end;
+}
+
+.glass-controls {
+    align-items: flex-start;
+}
+
+.color-controls h3 {
+    font-size: 1.1rem;
+    color: var(--clr-accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.color-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 250px;
+}
+
+.color-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--clr-bg);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+}
+
+.color-btn:hover {
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+}
+
+.color-btn.active {
+    border-color: var(--clr-accent);
+    background: #fff;
+    box-shadow: 0 15px 30px rgba(214, 154, 54, 0.15);
+    transform: translateY(-3px);
+}
+
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: block;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.color-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--clr-dark);
+    font-family: inherit;
+}
+
+/* Merkez: Canlı SVG Önizleme Alanı */
+.showcase-visual {
+    flex: 1.5;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F8F9FA;
+    border-radius: 50%;
+    /* Dairesel şık bir stant hissi */
+    aspect-ratio: 1 / 1;
+    padding: 3rem;
+    box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.03), 0 20px 40px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+}
+
+.showcase-glow {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(214, 154, 54, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* İNTERAKTİF DEĞİŞKENLER VE ANİMASYONLAR */
+:root {
+    --preview-profile: #2A2D34;
+    /* Varsayılan: Antrasit */
+    --preview-glass: rgba(200, 220, 235, 0.2);
+    /* Varsayılan: Şeffaf */
+}
+
+.interactive-balcony-svg {
+    width: 100%;
+    max-width: 400px;
+    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.1));
+    z-index: 1;
+}
+
+/* Renk Geçişleri Pürüzsüz Olacak */
+.svg-profile {
+    fill: var(--preview-profile);
+    transition: fill 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.svg-glass {
+    fill: var(--preview-glass);
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 1;
+    transition: fill 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 1024px) {
+    .custom-showcase {
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .profile-controls,
+    .glass-controls {
+        align-items: center;
+        width: 100%;
+    }
+
+    .color-options {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    .color-btn {
+        width: auto;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+
+    .showcase-visual {
+        order: -1;
+        width: 100%;
+        max-width: 500px;
+        aspect-ratio: auto;
+        border-radius: 20px;
+        padding: 2rem;
+    }
+}
+
+/* --- 3. BÖLÜM: ALT SAYFA SSS (İZOLE VE GARANTİLİ TASARIM) --- */
+.cb-faq-section {
+    padding: 6rem 4vw;
+    background: #F8F9FA;
+    border-top: 1px solid rgba(26, 31, 36, 0.05);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.sub-faq-item {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+}
+
+.sub-faq-question {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--clr-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.sub-faq-icon {
+    font-size: 1.5rem;
+    color: var(--clr-accent);
+    transition: transform 0.3s ease;
+}
+
+.sub-faq-answer {
+    max-height: 0;
+    /* JS bu değeri açacak */
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sub-faq-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: rgba(26, 31, 36, 0.7);
+    line-height: 1.6;
+}
+
+.sub-faq-item.active .sub-faq-question {
+    color: var(--clr-accent);
+}
+
+.sub-faq-item.active .sub-faq-icon {
+    transform: rotate(45deg);
+    /* Artı işareti Çarpı olur */
+}
+
+/* --- 4. BÖLÜM: ALT SAYFA SEO & FİNAL CTA --- */
+.cb-seo-cta-section {
+    padding: 5rem 4vw 8rem;
+    background: #fff;
+}
+
+.seo-cta-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+/* Şık SEO Sütunları */
+.seo-content-box {
+    display: flex;
+    gap: 3rem;
+    color: rgba(26, 31, 36, 0.7);
+    line-height: 1.8;
+}
+
+.seo-column {
+    flex: 1;
+}
+
+.seo-column h3 {
+    font-size: 1.2rem;
+    color: var(--clr-dark);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.seo-column strong {
+    color: var(--clr-dark);
+    font-weight: 600;
+}
+
+/* Final Harekete Geçirici Kutu (CTA) */
+.final-cta-box {
+    background: linear-gradient(135deg, var(--clr-dark), #1a1e23);
+    border-radius: 16px;
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    box-shadow: 0 20px 40px rgba(11, 14, 17, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Kutu içi hafif parlama efekti */
+.final-cta-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(214, 154, 54, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.cta-text {
+    flex: 1;
+    z-index: 1;
+}
+
+.cta-text h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.cta-text p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.cta-action {
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.btn-pulse {
+    animation: softPulse 2s infinite;
+}
+
+@keyframes softPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(214, 154, 54, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(214, 154, 54, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(214, 154, 54, 0);
+    }
+}
+
+@media (max-width: 900px) {
+    .seo-content-box {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .final-cta-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 2rem;
+    }
+}
+
+/* --- YENİ BÖLÜM: GENİŞLEYEN GALERİ --- */
+.cb-gallery-section {
+    padding: 6rem 4vw;
+    background: #fff;
+    overflow: hidden;
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-header {
+    margin-bottom: 3rem;
+}
+
+.gallery-action {
+    margin-top: 4rem;
+}
+
+/* Galeri Taşıyıcı */
+.expanding-gallery {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    /* Galerinin toplam yüksekliği */
+    gap: 15px;
+    /* Paneller arası boşluk */
+}
+
+/* Tekil Paneller */
+.gallery-panel {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    cursor: pointer;
+    flex: 1;
+    /* Varsayılan olarak hepsi eşit dar sütun */
+    filter: grayscale(100%);
+    /* Başlangıçta siyah-beyaz */
+    transition: flex 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
+    overflow: hidden;
+}
+
+/* Alt kısımdaki yazılar okunabilsin diye siyah degrade perde */
+.gallery-panel::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+/* Yazı İçeriği */
+.panel-content {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s 0.2s ease;
+    white-space: nowrap;
+    /* Metnin aşağı taşmasını engeller */
+}
+
+.panel-content h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 5px 0;
+}
+
+.panel-content span {
+    font-size: 0.95rem;
+    color: var(--clr-accent);
+    font-weight: 500;
+}
+
+/* --- MASAÜSTÜ (HOVER EFEKTİ) --- */
+@media (min-width: 769px) {
+    .gallery-panel:hover {
+        flex: 6;
+        /* Üzerine gelince 6 kat genişler */
+        filter: grayscale(0%);
+        /* Renklenir */
+    }
+
+    .gallery-panel:hover::before {
+        opacity: 1;
+    }
+
+    .gallery-panel:hover .panel-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- MOBİL (TIKLAMA İLE DİKEY AKORDİYON) --- */
+@media (max-width: 768px) {
+    .expanding-gallery {
+        flex-direction: column;
+        /* Mobilde alt alta sıralanır */
+        height: 600px;
+    }
+
+    .gallery-panel {
+        border-radius: 12px;
+    }
+
+    /* Mobilde hover çalışmayacağı için JS'in atayacağı .active sınıfını kullanıyoruz */
+    .gallery-panel.active {
+        flex: 5;
+        filter: grayscale(0%);
+    }
+
+    .gallery-panel.active::before {
+        opacity: 1;
+    }
+
+    .gallery-panel.active .panel-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- ÇEVRE DOSTU (BEYAZ KONSEPT) --- */
+.cb-eco-section {
+    --clr-eco-main: #059669;
+    /* Lüks ve doygun Zümrüt Yeşili */
+    --clr-eco-light: #E6F8F1;
+    /* Çok uçuk ferah nane yeşili arka plan */
+    padding: 6rem 4vw;
+    background: #ffffff;
+    /* Sitenin beyaz yapısına tam uyum */
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    /* Üstteki bölümle soft ayrım */
+}
+
+.eco-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.eco-header .section-subtitle {
+    color: var(--clr-eco-main);
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.eco-header .section-title {
+    color: var(--clr-dark);
+    margin-top: 0.5rem;
+}
+
+.eco-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--clr-eco-main);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(5, 150, 105, 0.4);
+}
+
+/* Kutu Izgarası */
+.eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
+
+/* Ferah Kart Tasarımı */
+.eco-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    /* Çok çok hafif gri gölge */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+}
+
+/* Kartın Üzerine Gelince Yeşeren Şık Gölge */
+.eco-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(5, 150, 105, 0.15);
+    box-shadow: 0 20px 40px rgba(5, 150, 105, 0.08);
+    /* Zümrüt yeşili soft parlama */
+}
+
+/* İkon Çerçevesi */
+.eco-icon-wrapper {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 1.5rem;
+    background: var(--clr-eco-light);
+    /* Uçuk yeşil arka plan */
+    color: var(--clr-eco-main);
+    /* Koyu yeşil ikon */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Dönüş Efekti Yapan Kesik Çizgi */
+.eco-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 1.5px dashed rgba(5, 150, 105, 0.3);
+    border-radius: 50%;
+    animation: rotateSlow 15s linear infinite;
+}
+
+@keyframes rotateSlow {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Metinler */
+.eco-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--clr-dark);
+    font-weight: 700;
+}
+
+.eco-card p {
+    color: rgba(26, 31, 36, 0.7);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- STICKY BAR TASARIM DÜZELTMESİ --- */
+.next-bar-content {
+    display: flex;
+    flex-direction: column;
+    /* Alt alta dizer */
+    align-items: flex-start;
+    gap: 4px;
+    /* İki metin arası boşluk */
+}
+
+.next-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    color: var(--clr-white);
+}
+
+.next-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--clr-accent);
+}
+
+/* Örnek CSS */
+.svg-profile {
+    fill: var(--preview-profile, #2A2D34);
+    transition: fill 0.3s ease;
+}
+
+.svg-glass {
+    fill: var(--preview-glass, rgba(200, 220, 235, 0.2));
+    transition: fill 0.3s ease;
+}

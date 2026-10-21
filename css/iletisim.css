@@ -1,0 +1,295 @@
+/* =========================================
+   İLETİŞİM SAYFASI (MERKEZİ TASARIM)
+========================================= */
+
+/* Hero bölümünü Header'dan kurtarma ve tam ortalama */
+.contact-hero-section {
+    padding-top: 160px;
+    padding-bottom: 60px;
+    position: relative;
+    background-color: #fff;
+}
+
+.hero-center-fix {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-breadcrumb-fix {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.page-iletisim .contact-bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(rgba(214, 154, 54, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(214, 154, 54, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+}
+
+.contact-main-section {
+    padding: 80px 0;
+    background-color: #fafafa;
+}
+
+/* Her şey tam ortada duracak */
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-info-wrapper {
+    max-width: 600px;
+    width: 100%;
+}
+
+.contact-heading,
+.contact-subtext,
+.contact-social h3 {
+    text-align: center;
+}
+
+.contact-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1f24;
+    margin-bottom: 10px;
+}
+
+.contact-subtext {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+
+
+.whatsapp-card:hover {
+    background-color: #25d366;
+    /* Hover'da zemin yeşil olur */
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    border-color: #25d366;
+}
+
+.whatsapp-card:hover .info-icon {
+    background-color: #fff;
+    /* İkon zemini beyaz olur */
+    color: #25d366;
+    /* İkon rengi yeşil olur */
+}
+
+.whatsapp-card:hover .info-text span,
+.whatsapp-card:hover .info-text strong {
+    color: #fff;
+    /* Yazılar yeşil zeminde BEMBEYAZ ve okunur olur! */
+}
+
+/* Standart Hover (Telefon ve Mail için) */
+.info-card:not(.whatsapp-card):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(214, 154, 54, 0.15);
+    border-color: #d69a36;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(214, 154, 54, 0.1);
+    color: #d69a36;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* İkonların devasa olmasını engelleyen kural */
+.info-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.info-text span {
+    display: block;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.info-text strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #1a1f24;
+    transition: color 0.3s ease;
+}
+
+.contact-social h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #1a1f24;
+}
+
+.social-links-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links-wrapper a {
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    color: #1a1f24;
+    transition: all 0.3s ease;
+}
+
+.social-links-wrapper a:hover {
+    background: #d69a36;
+    color: #fff;
+    border-color: #d69a36;
+    transform: translateY(-3px);
+}
+
+.social-links-wrapper a svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Harita Bölümü */
+.contact-map-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #eee;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.map-overlay-card {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    max-width: 320px;
+    text-align: center;
+}
+
+.map-overlay-card .overlay-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(214, 154, 54, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+}
+
+.map-overlay-card .overlay-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.map-overlay-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #1a1f24;
+}
+
+.map-overlay-card p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.btn-directions {
+    display: inline-block;
+    background: #d69a36;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-directions:hover {
+    background: #b5802a;
+}
+
+/* Mobil Tasarım Ayarları */
+@media (max-width: 992px) {
+    .map-overlay-card {
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero-section {
+        padding-top: 120px;
+    }
+
+    .contact-main-section {
+        padding: 50px 20px;
+    }
+}

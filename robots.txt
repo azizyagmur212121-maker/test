@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /.vscode/
+
+# Görsel botlarının galeri ve img klasörlerini rahatça taraması için
+User-agent: Googlebot-Image
+Allow: /img/
+Allow: /galeri/img/
+
+Sitemap: https://www.balcicambalkon.com/sitemap.xml
